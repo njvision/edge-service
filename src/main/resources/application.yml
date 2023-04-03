@@ -10,6 +10,11 @@ spring:
     name: edge-service
   lifecycle:
     timeout-per-shutdown-phase: 15s
+  session:
+    store-type: redis
+    timeout: 10m
+    redis:
+      namespace: md:edge
   cloud:
     gateway:
       httpclient:
@@ -20,6 +25,7 @@ spring:
           max-idle-time: 15s
           max-life-time: 60s
       default-filters:
+        - SaveSession
         - name: RequestRateLimiter
           args:
             redis-rate-limiter:

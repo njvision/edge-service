@@ -10,10 +10,13 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 public class SecurityConfig {
 
     @Bean
-    SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+    SecurityWebFilterChain springSecurityFilterChain(
+            ServerHttpSecurity http
+    ) {
         return http
-                .authorizeExchange(exchange -> exchange.anyExchange().authenticated())
-                .formLogin(Customizer.withDefaults())
+                .authorizeExchange(exchange ->
+                        exchange.anyExchange().authenticated())
+                .oauth2Login(Customizer.withDefaults())
                 .build();
     }
 }

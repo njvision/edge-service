@@ -108,24 +108,6 @@ resilience4j:
       default:
         timeoutDuration: 5s
 
-info:
-  system: Md Bookshop
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health
-  endpoint:
-    health:
-      show-details: always
-      show-components: always
-      probes:
-        enabled: true
-      group:
-        readiness:
-          include: readinessState,redis
-
 logging:
   group:
     circuitbreaker: io.github.resilience4j, org.springframework.cloud.circuitbreaker
@@ -133,3 +115,21 @@ logging:
     circuitbreaker: info
   pattern:
     level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
+
+info:
+  system: Md Bookshop
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      probes:
+        enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}

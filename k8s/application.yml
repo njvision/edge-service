@@ -1,0 +1,9 @@
+spring:
+  redis:
+    host: md-redis
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://md-keycloak/realms/MdBookshop
